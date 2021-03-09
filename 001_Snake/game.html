@@ -1,0 +1,78 @@
+<canvas id="myCanvas" width="400" height="400"></canvas>
+<script>
+    window.onload = function(){
+        canvas = document.getElementById('myCanvas');
+        ctx = canvas.getContext('2d');
+        document.addEventListener('keydown', changeDirection);
+        setInterval(loop, 1000/8);
+    }
+
+    xSnake = ySnake = 10; // Snake x and y position
+    gs = tc = 20; // grid size and tile count
+    xApple = yApple = 15; // Apple x and y position
+    xVelocity = yVelocity = 0; // x and y velocity
+    trail = []; // list of tail elements
+    tail = 5; // tail size
+
+    function loop() {
+        xSnake += xVelocity;
+        ySnake += yVelocity;
+
+        if(xSnake < 0){
+            xSnake = tc - 1;
+        }
+        if(xSnake > tc - 1){
+            xSnake = 0;
+        }
+        if(ySnake < 0){
+            ySnake = tc - 1;
+        }
+        if(ySnake > tc - 1){
+            ySnake = 0;
+        }
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = 'lime';
+        for(var i = 0; i < trail.length; i++){
+            ctx.fillRect(trail[i].x*gs, trail[i].y*gs, gs - 2, gs - 2);
+            if((trail[i].x == xSnake) && (trail[i].y == ySnake)){
+                tail = 5;
+            }
+        }
+        trail.push({x: xSnake, y: ySnake});
+        while(trail.length > tail){
+            trail.shift();
+        }
+
+        if((xApple == xSnake) && (yApple==ySnake)){
+            tail++;
+            xApple = Math.floor(Math.random()*tc);
+            yApple = Math.floor(Math.random()*tc);
+        }
+        ctx.fillStyle = 'red';
+        ctx.fillRect(xApple*gs, yApple*gs, gs - 2, gs - 2);
+    }
+
+    function changeDirection(event) {
+        switch(event.keyCode) {
+            case 37:
+                xVelocity = -1;
+                yVelocity = 0;
+                break;
+            case 38:
+                xVelocity = 0;
+                yVelocity = -1;
+                break;
+            case 39:
+                xVelocity = 1;
+                yVelocity = 0;
+                break;
+            case 40:
+                xVelocity = 0;
+                yVelocity = 1;
+                break;
+        }
+    }
+</script>
