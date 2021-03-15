@@ -1,3 +1,10 @@
+// Shape Classifier 
+// CodeSpace
+
+// Generate Dataset: 
+// Training: 
+// Draw Classifier:
+
 function setup(){
     createCanvas(64, 64);
 }
