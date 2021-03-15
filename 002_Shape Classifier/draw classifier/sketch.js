@@ -1,7 +1,7 @@
 // Shape Classifier 
 // CodeSpace
 
-// Generate Dataset: 
+// Generate Dataset: https://github.com/CodeItSpace/CodeSpace/blob/main/002_Shape%20Classifier/dataset/sketch.js
 // Training: 
 // Draw Classifier:
 
