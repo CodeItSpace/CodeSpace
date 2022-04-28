@@ -1,6 +1,6 @@
 # Pong game
 # CodeSpace
-# https://youtu.be/iFVPhP5VJz8
+# https://youtu.be/Dz2CWoAhNPY
 import pygame
 
 # Game constants
